@@ -22,7 +22,7 @@ def randomNumbers():
 
 def computation(a, b, i):
 	if i == 0:
-		if a + b == int(a + b) and a + b >= 0:
+		if a + b == int(a + b):
 			print a,
 			print '+',
 			print b,
@@ -31,15 +31,15 @@ def computation(a, b, i):
 		return a + b
 
 	elif i == 1:
-		if a - b == int(a - b) and a - b >= 0:
+		if a - b == int(a - b):
 			print a,
 			print '-',
 			print b,
 			print '=',
 
-		return a - b
+		return abs(a - b)
 	elif i == 2:
-		if a * b == int(a * b) and a * b >= 0:
+		if a * b == int(a * b):
 			print a,
 			print '*',
 			print b,
@@ -48,7 +48,7 @@ def computation(a, b, i):
 		return a * b
 
 	elif i == 3:
-		if a / b == int(a / b) and a / b >= 0:
+		if a / b == int(a / b):
 			print a,
 			print '/',
 			print b,
@@ -62,7 +62,7 @@ def algo(numbers):
 	if len(numbers) >= 2:
 		for j in range(0, len(numbers)):
 			if j < len(numbers)-1:
-				print bcolors.UNDERLINE
+				print bcolors.UNDERLINE,
 				print numbers[j],
 			else:
 				print numbers[j]
@@ -74,23 +74,24 @@ def algo(numbers):
 			results.append(res)
 			if res == int(res) and res >= 0:
 				print res
+				print len(results)
 
 				newNumbers = numbers[2:]
 				newNumbers = [res] + newNumbers
 
 				print ''
 
-
 				algo(newNumbers)
 			else:
 				print ''
+				algo(newNumbers)
 
 
 
 number = randint(101, 999)
 
 numbers = randomNumbers()
-numbers = [8., 10., 3., 4., 7., 2.]
+numbers = [64., 32., 16., 8., 4., 2.]
 
 print number
 for i in range(0, len(numbers)):
