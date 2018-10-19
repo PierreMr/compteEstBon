@@ -128,58 +128,123 @@ number = randint(101, 999)
 numbers = randomNumbers()
 # numbers = [64., 32., 16., 8., 4., 2.]
 
-print number
-for i in range(0, len(numbers)):
-	if i < len(numbers)-1:
-		print numbers[i],
-	else:
-		print numbers[i]
-		print ''
+result = 0
 
-# for n in range(0, len(numbers)):
-# 	algo(numbers)
-	
-# 	temp = numbers[0]
-# 	numbers = numbers[1:]
-# 	numbers = numbers + [temp]
+def tour(n, array):
+	print 'Tour ' + str(n)
+	print ''
 
-for z in range(0, 6):
-	if z > 0 and z < 3:
-		numbers = change(numbers, 0, 1)
-	elif z == 3:
-		numbers = change(numbers, 0, 3)
-	elif z == 4:
-		numbers = change(numbers, 0, 4)
-	elif z == 5:
-		numbers = change(numbers, 0, 5)
+	print number
+	for i in range(0, len(array)):
+		if i < len(array)-1:
+			print array[i],
+		else:
+			print array[i]
+			print ''
+
+	a = 0
+	while float(a) not in array:
+		a = input('Enter a number from the list above : ')
+		if a not in array:
+			print 'This number is not in the list above.'
+			print ''
+	array.remove(a)
+
+	o = 4
+	while o not in [0, 1, 2, 3]:
+		o = input('Enter an number (0 : + | 1 : - | 2 : * | 3 : /) : ')
+		if o not in [0, 1, 2, 3]:
+			print 'You must choose a number between 0 and 3.'
+			print ''
 	
-	for y in range(0, 5):
-		if y > 0:
-			numbers = change(numbers, 1, 2)
+	b = 0
+	while b not in array:
+		b = input('Enter another number from the list above : ')
+		if b not in array:
+			print 'This number is not in the list above.'
+			print ''
+	array.remove(b)
+
+	result = computation(a, b, o)
+
+	string = str(a)
+	if o == 0:
+		string += ' + '
+	if o == 1:
+		string += ' - '
+	if o == 2:
+		string += ' * '
+	if o == 3:
+		string += ' / '
+	string += str(b)
+	string += ' = '
+	string += str(result)
+
+	print string
+	print ''
+	print ''
+
+	array.append(float(result))
+	
+	if len(array) > 1:
+		if result == number:
+			print 'Bravo'
+		else:
+			n += 1
+			tour(n, array)
+
+	print ''
+
+
+tour(1, numbers)
+
+# print result
+
+# print number
+# for i in range(0, len(numbers)):
+# 	if i < len(numbers)-1:
+# 		print numbers[i],
+# 	else:
+# 		print numbers[i]
+# 		print ''
+
+# for z in range(0, 6):
+# 	if z > 0 and z < 3:
+# 		numbers = change(numbers, 0, 1)
+# 	elif z == 3:
+# 		numbers = change(numbers, 0, 3)
+# 	elif z == 4:
+# 		numbers = change(numbers, 0, 4)
+# 	elif z == 5:
+# 		numbers = change(numbers, 0, 5)
+	
+# 	for y in range(0, 5):
+# 		if y > 0:
+# 			numbers = change(numbers, 1, 2)
 		
-		for x in range(0, 4):
-			if x > 0 and x != 3:
-				numbers = change(numbers, 2, 3)
-			elif x == 3:
-				numbers = change(numbers, 2, 5)
+# 		for x in range(0, 4):
+# 			if x > 0 and x != 3:
+# 				numbers = change(numbers, 2, 3)
+# 			elif x == 3:
+# 				numbers = change(numbers, 2, 5)
 			
-			for w in range(0, 3):
-				if w > 0:
-					numbers = change(numbers, 3, 4)
+# 			for w in range(0, 3):
+# 				if w > 0:
+# 					numbers = change(numbers, 3, 4)
 			
-				for v in range(0, 2):
-					if v > 0:
-						numbers = change(numbers, 4, 5)
+# 				for v in range(0, 2):
+# 					if v > 0:
+# 						numbers = change(numbers, 4, 5)
 
-						algo(numbers)
+# 						algo(numbers)
 
-print len(computations)
+# print len(computations)
 
-print ''
+# print ''
 
-for i in range(0, len(results)):
-	print results[i]
+# for i in range(0, len(results)):
+# 	print results[i]
 
-print ''
+# print ''
 
-print len(results)
+# print len(results)
