@@ -48,24 +48,23 @@ def computation(a, b, i):
 		return a * b
 
 	elif i == 3:
-		# if a / b == int(a / b):
+		if a / b == int(a / b):
 		# 	print a,
 		# 	print '/',
 		# 	print b,
 		# 	print '=',
 	
-		# 	return a / b
-		# elif b / a == int(b / a):
+			return a / b
+		elif b / a == int(b / a):
 		# 	print a,
 		# 	print '/',
 		# 	print b,
 		# 	print '=',
 	
-		# 	return b / a
-		# else:
+			return b / a
+		else:
 			
-		# 	return a / b
-		return a / b
+			return a / b
 
 def change(array, a, b):
 	temp = array[a]
@@ -74,10 +73,17 @@ def change(array, a, b):
 
 	return array
 
+
+number = randint(101, 999)
+# number = 112
+
+numbers = randomNumbers()
+# numbers = [64., 32., 16., 8., 4., 2.]
+
 computations = []
 results = []
 
-def algo(numbers):
+def algo(numbers, difference):
 	if len(numbers) >= 2:
 		# for j in range(0, len(numbers)):
 		# 	if j < len(numbers)-1:
@@ -92,7 +98,15 @@ def algo(numbers):
 			res = computation(numbers[0], numbers[1], i)
 			computations.append(res)
 
-			if res == number:
+			# if res == number:
+			if abs(res - number) <= difference:
+				if abs(res - number) != difference:
+					del results[:]
+
+				difference = abs(res - number)
+				# print difference
+
+
 				string = str(numbers[0])
 				if i == 0:
 					string += ' + '
@@ -115,20 +129,11 @@ def algo(numbers):
 				newNumbers = [res] + newNumbers
 
 				# print ''
-				algo(newNumbers)
+				algo(newNumbers, difference)
 			else:
 				# print ''
-				algo(newNumbers)
+				algo(newNumbers, difference)
 
-
-
-number = randint(101, 999)
-# number = 112
-
-numbers = randomNumbers()
-# numbers = [64., 32., 16., 8., 4., 2.]
-
-result = 0
 
 def tour(n, array):
 	print 'Tour ' + str(n)
@@ -190,61 +195,62 @@ def tour(n, array):
 		if result == number:
 			print 'Bravo'
 		else:
+			print 'Result : ' + str(result)
+			
+			print ''
 			n += 1
 			tour(n, array)
 
 	print ''
 
 
-tour(1, numbers)
+# tour(1, numbers)
 
-# print result
+print number
+for i in range(0, len(numbers)):
+	if i < len(numbers)-1:
+		print numbers[i],
+	else:
+		print numbers[i]
+		print ''
 
-# print number
-# for i in range(0, len(numbers)):
-# 	if i < len(numbers)-1:
-# 		print numbers[i],
-# 	else:
-# 		print numbers[i]
-# 		print ''
-
-# for z in range(0, 6):
-# 	if z > 0 and z < 3:
-# 		numbers = change(numbers, 0, 1)
-# 	elif z == 3:
-# 		numbers = change(numbers, 0, 3)
-# 	elif z == 4:
-# 		numbers = change(numbers, 0, 4)
-# 	elif z == 5:
-# 		numbers = change(numbers, 0, 5)
+for z in range(0, 6):
+	if z > 0 and z < 3:
+		numbers = change(numbers, 0, 1)
+	elif z == 3:
+		numbers = change(numbers, 0, 3)
+	elif z == 4:
+		numbers = change(numbers, 0, 4)
+	elif z == 5:
+		numbers = change(numbers, 0, 5)
 	
-# 	for y in range(0, 5):
-# 		if y > 0:
-# 			numbers = change(numbers, 1, 2)
+	for y in range(0, 5):
+		if y > 0:
+			numbers = change(numbers, 1, 2)
 		
-# 		for x in range(0, 4):
-# 			if x > 0 and x != 3:
-# 				numbers = change(numbers, 2, 3)
-# 			elif x == 3:
-# 				numbers = change(numbers, 2, 5)
+		for x in range(0, 4):
+			if x > 0 and x != 3:
+				numbers = change(numbers, 2, 3)
+			elif x == 3:
+				numbers = change(numbers, 2, 5)
 			
-# 			for w in range(0, 3):
-# 				if w > 0:
-# 					numbers = change(numbers, 3, 4)
+			for w in range(0, 3):
+				if w > 0:
+					numbers = change(numbers, 3, 4)
 			
-# 				for v in range(0, 2):
-# 					if v > 0:
-# 						numbers = change(numbers, 4, 5)
+				for v in range(0, 2):
+					if v > 0:
+						numbers = change(numbers, 4, 5)
 
-# 						algo(numbers)
+					algo(numbers, number)
 
-# print len(computations)
+print len(computations)
 
-# print ''
+print ''
 
-# for i in range(0, len(results)):
-# 	print results[i]
+for i in range(0, len(results)):
+	print results[i]
 
-# print ''
+print ''
 
-# print len(results)
+print len(results)
